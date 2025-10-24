@@ -1,11 +1,25 @@
 export const MathUtils = {
-  degToRad: deg => deg * Math.PI / 180,
-  radToDeg: rad => rad * 180 / Math.PI,
+  clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  },
 
-  clamp: (x, min, max) => Math.min(Math.max(x, min), max),
+  lerp(a, b, t) {
+    return a + (b - a) * t;
+  },
 
-  lerp: (a, b, t) => a + (b - a) * t,
+  degToRad(degrees) {
+    return degrees * (Math.PI / 180);
+  },
 
-  randFloat: (min, max) => min + Math.random() * (max - min),
-  randInt: (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
+  radToDeg(radians) {
+    return radians * (180 / Math.PI);
+  },
+
+  nearlyEqual(a, b, epsilon = 1e-6) {
+    return Math.abs(a - b) < epsilon;
+  },
+
+  randomRange(min, max) {
+    return min + Math.random() * (max - min);
+  },
 };
