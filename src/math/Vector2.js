@@ -28,17 +28,17 @@ export class Vector2 {
     return this;
   }
 
-  dot(v) {
-    return this.x * v.x + this.y * v.y;
-  }
-
   length() {
-    return Math.sqrt(this.x*this.x + this.y*this.y);
+    return Math.sqrt(this.x * this.x + this.y * this.y);
   }
 
   normalize() {
     const len = this.length();
     if (len > 0) this.multiplyScalar(1 / len);
     return this;
+  }
+
+  dot(v) {
+    return this.x * v.x + this.y * v.y;
   }
 }
