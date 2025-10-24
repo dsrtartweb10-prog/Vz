@@ -1,6 +1,8 @@
 export class Vector3 {
   constructor(x = 0, y = 0, z = 0) {
-    this.x = x; this.y = y; this.z = z;
+    this.x = x;
+    this.y = y;
+    this.z = z;
   }
 
   set(x, y, z) {
@@ -10,11 +12,6 @@ export class Vector3 {
 
   clone() {
     return new Vector3(this.x, this.y, this.z);
-  }
-
-  copy(v) {
-    this.x = v.x; this.y = v.y; this.z = v.z;
-    return this;
   }
 
   add(v) {
@@ -36,10 +33,6 @@ export class Vector3 {
     return this.multiplyScalar(1 / s);
   }
 
-  dot(v) {
-    return this.x*v.x + this.y*v.y + this.z*v.z;
-  }
-
   cross(v) {
     const x = this.y * v.z - this.z * v.y;
     const y = this.z * v.x - this.x * v.z;
@@ -47,14 +40,17 @@ export class Vector3 {
     return new Vector3(x, y, z);
   }
 
+  dot(v) {
+    return this.x * v.x + this.y * v.y + this.z * v.z;
+  }
+
   length() {
-    return Math.sqrt(this.x*this.x + this.y*this.y + this.z*this.z);
+    return Math.sqrt(this.x ** 2 + this.y ** 2 + this.z ** 2);
   }
 
   normalize() {
     const len = this.length();
-    if (len > 0) this.divideScalar(len);
-    return this;
+    return len > 0 ? this.divideScalar(len) : this;
   }
 
   applyMatrix4(m) {
@@ -66,10 +62,4 @@ export class Vector3 {
     this.z = (e[2]*x + e[6]*y + e[10]*z + e[14]) * w;
     return this;
   }
-
-  distanceTo(v) {
-    return Math.sqrt(
-      (this.x - v.x)**2 + (this.y - v.y)**2 + (this.z - v.z)**2
-    );
   }
-                     }
